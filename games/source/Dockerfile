@@ -30,7 +30,7 @@ LABEL       org.opencontainers.image.licenses=MIT
 RUN         dnf update \
 				&& dnf upgrade -y \
 				&& dnf install -y tar curl gcc g++ libstdc++ libstdc++.i686 nss-devel nss-devel.i686 ncurses-devel ncurses-devel.i686 libcurl-devel libcurl-devel.i686 SDL2-devel SDL2-devel.i686 gdb fontconfig fontconfig.i686 telnet net-tools tzdata boost boost-devel \
-				&& rpm -ivh --nodeps https://www.rpmfind.net/linux/openmandriva/6.0/repository/x86_64/main/release/lib64curl-gnutls-8.13.0-1-omv2590.x86_64.rpm
+				&& rpm -ivh --nodeps https://www.rpmfind.net/linux/openmandriva/6.0/repository/x86_64/main/release/lib64curl-gnutls-8.13.0-1-omv2590.x86_64.rpm \
 				&& useradd -m -d /home/container container
 
 USER        container
