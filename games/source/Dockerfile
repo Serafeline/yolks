@@ -29,9 +29,17 @@ LABEL       org.opencontainers.image.licenses=MIT
 
 RUN         dnf update \
 				&& dnf upgrade -y \
-				&& dnf install -y tar curl gcc g++ libstdc++ libstdc++.i686 nss-devel nss-devel.i686 ncurses-devel ncurses-devel.i686 openssl-devel openssl-devel.i686 libpsl-devel libpsl-devel.i686 libcurl-devel libcurl-devel.i686 SDL2-devel SDL2-devel.i686 gdb fontconfig fontconfig.i686 telnet net-tools tzdata boost boost-devel \
+				&& dnf install -y iproute sed unzip wget tar curl gcc g++ libstdc++ nss-devel ncurses-devel openssl-devel libpsl-devel libcurl-devel SDL2-devel gdb fontconfig telnet net-tools tzdata boost boost-devel glibc.i686 libstdc++.i686 \
 				&& rpm -ivh --nodeps https://www.rpmfind.net/linux/openmandriva/6.0/repository/x86_64/main/release/lib64curl-gnutls-8.13.0-1-omv2590.x86_64.rpm \
 				&& useradd -m -d /home/container container
+				#&& wget -O /home/container/jetbrains_debugger_agent "https://download.jetbrains.com/rider/ssh-remote-debugging/linux-x64/jetbrains_debugger_agent_20240726.40.0" \
+   				#&& chmod +x /home/container/jetbrains_debugger_agent \
+				#&& wget --content-disposition "https://data.services.jetbrains.com/products/download?code=RRD&platform=linux64" \
+				#&& FILENAME=$(ls JetBrains.Rider.RemoteDebuggerUploads.linux-x64.*.zip) \
+				#&& VERSION=$(echo $FILENAME | sed 's/JetBrains\.Rider\.RemoteDebuggerUploads\.linux-x64\.//g' | sed 's/\.zip//g') \
+				#&& mkdir -p /home/container/.local/share/JetBrains/RiderRemoteDebugger/$VERSION \
+   				#&& unzip $FILENAME -d /home/container/.local/share/JetBrains/RiderRemoteDebugger/$VERSION \
+				#&& chown -R container: /home/container/.local/share/JetBrains/RiderRemoteDebugger/$VERSION
 
 USER        container
 ENV         USER=container HOME=/home/container
