@@ -27,4 +27,4 @@ jobs:
         with:
           context: .games/source
           push: true
-          tags: ghcr.io/${{ github.repository }}:latest
+          tags: ghcr.io/serafeline/yolks:latest
